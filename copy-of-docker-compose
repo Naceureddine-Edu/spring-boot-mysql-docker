@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  db:
+    image: mysql
+    container_name: mysql-standalone1
+    environment:
+    - MYSQL_ROOT_PASSWORD=admin123
+    - MYSQL_DATABASE=test
+    #- MYSQL_USER=testuser
+    #- MYSQL_PASSWORD=testuser@123
+    ports:
+      - "3306:3306"
+    networks:
+      - common-network
+
+  springboot-docker-container:
+   image: springboot-docker-container
+   container_name: springboot-docker-container
+   build:
+     context: .
+     dockerfile: Dockerfile
+   ports:
+     - "8080:8080"
+   depends_on:
+     - db
+   environment:
+     SPRING_PROFILES_ACTIVE: local
+     SPRING_DATASOURCE_URL: jdbc:mysql://mysql-standalone1:3306/test?createDatabaseIfNotExist=true
+     SPRING_DATASOURCE_USERNAME: testuser
+     SPRING_DATASOURCE_PASSWORD: testuser@123
+     DATABASE_PORT: 3306
+     SERVER_PORT: 8080
+   links:
+     - db
+   networks:
+     - common-network
+
+networks:
+  common-network:
+    driver: bridge
