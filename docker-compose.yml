@@ -26,8 +26,8 @@ services:
    environment:
      SPRING_PROFILES_ACTIVE: local
      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-standalone1:3306/test?createDatabaseIfNotExist=true
-     SPRING_DATASOURCE_USERNAME: testuser
-     SPRING_DATASOURCE_PASSWORD: testuser@123
+     SPRING_DATASOURCE_USERNAME: root
+     SPRING_DATASOURCE_PASSWORD: pass
      DATABASE_PORT: 3306
      SERVER_PORT: 8080
    links:

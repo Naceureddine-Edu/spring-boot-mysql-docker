@@ -1,7 +1,7 @@
 spring:
     datasource:
         driverClassName: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://docker-mysql:3301/fitapp
+        url: jdbc:mysql://mysql-standalone1:3306/test
         username: root
         password: pass
     jpa:
